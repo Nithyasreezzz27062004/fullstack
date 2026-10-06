@@ -1,0 +1,123 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+ 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+    <style> 
+        *, 
+        *::after, 
+        *::before { 
+            margin: 0px; 
+            padding: 0px; 
+            box-sizing: border-box; 
+        } 
+        nav{ 
+            width:100%; 
+            height:10vh; 
+            background-color:rgb(51, 0, 255); 
+            display: flex; 
+            justify-content:space-around; 
+ 
+        } 
+        .logo{ 
+             
+            width:300px; 
+            height: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            font-size: 35px; 
+            font-weight: 400; 
+            margin-left: 40px; 
+            color: azure; 
+            
+             
+        } 
+        .ul{  
+           padding:5px; 
+           display: flex; 
+           align-items: center; 
+           justify-content: center; 
+           font-size: 20px; 
+           width:700px; 
+           height: 100%; 
+           list-style: none;
+}
+             
+        .li{ 
+           margin-left:20px; 
+           list-style-type: none; 
+           
+           
+        } 
+        .link{ 
+            text-decoration: none; 
+            color: aliceblue; 
+            font-size: 20px; 
+        } 
+
+        .Sign { 
+            border: 3px solid whitesmoke;
+            border-radius: 8px; 
+            padding: 12px 25px; 
+           
+        } 
+
+        .Sign.Up { 
+            background-color: white; 
+            border-radius: 8px; 
+            padding: 12px 25px;
+            color: blue;
+        }   
+ 
+        .content{ 
+          
+          font-size: 40px; 
+          display: flex; 
+          flex-direction: column; 
+          align-items: center; 
+          justify-content: center; 
+          width: 100%; 
+          height: 90vh; 
+        } 
+           .content h1{ 
+            color: blue;
+            font-size: 70px; 
+            display: flex; 
+            align-items: center; 
+        } 
+        .content h2{ 
+         font-size: 40px; 
+         display: flex; 
+         text-align: center; 
+         margin-top: 20px; 
+        }    
+     
+    </style> 
+</head> 
+<body> 
+    <nav> 
+        <div class="logo"> 
+            NAVBAR 
+        </div> 
+        <ul class="ul"> 
+            <li class="li"><a href="" class="link">Home</a></li> 
+            <li class="li"><a href="" class="link">About</a></li> 
+            <li class="li"><a href="" class="link">Blog</a></li> 
+            <li class="li"><a href="" class="link">Contact</a></li> 
+            <li class="li"><a href="" class="link Sign">Sign In</a></li> 
+            <li class="li"><a href="" class="link Sign Up">Sign Up</a></li> 
+        </ul> 
+ 
+    </nav> 
+    <div class="content"> 
+        <h1> NAVIGATION BAR</h1> 
+        <h2> HTML & CSS ONLY</h2> 
+ 
+    </div> 
+         
+</body> 
+ 
+</html>

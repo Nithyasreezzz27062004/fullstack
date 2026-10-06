@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            display: flex;
+            gap: 50px;
+        }
+
+        #result {
+            border: 2px solid black;
+            width: 250px;
+            height: 200px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        UserName : <input type="text" id="username"><br>
+        Tamil : <input type="number" id="tamil"><br>
+        English : <input type="number" id="english"><br>
+        Maths : <input type="number" id="maths"><br>
+        Science : <input type="number" id="science"><br>
+        Social : <input type="number" id="social"><br>
+
+        <button onclick="calculation()">Calc</button>
+    </div>
+
+    <div id="result">
+        Result
+    </div>
+
+    <script>
+
+        function calculation() {
+
+            let tamil = Number(document.getElementById("tamil").value);
+            let english = Number(document.getElementById("english").value);
+            let maths = Number(document.getElementById("maths").value);
+            let science = Number(document.getElementById("science").value);
+            let social = Number(document.getElementById("social").value);
+
+            let total = tamil + english + maths + science + social;
+            let average = total / 5;
+            let percentage = (total / 500) * 100;
+
+            let grade;
+
+            if (percentage >= 90 && percentage <= 100) {
+                grade = "A+";
+            }
+            else if (percentage >= 80 && percentage < 90) {
+                grade = "A";
+            }
+            else if (percentage >= 70 && percentage < 80) {
+                grade = "B";
+            }
+            else if (percentage >= 60 && percentage < 70) {
+                grade = "C";
+            }
+            else if (percentage >= 50 && percentage < 60) {
+                grade = "D";
+            }
+            else {
+                grade = "Fail";
+            }
+
+            document.getElementById("result").innerHTML =
+                "Total : " + total + "<br>" +
+                "Average : " + average + "<br>" +
+                "Percentage : " + percentage + "%<br>" +
+                "Grade : " + grade;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+

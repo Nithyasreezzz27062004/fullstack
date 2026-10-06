@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background: blueviolet;
+            color: white;
+            padding: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-right: 100px;
+        }
+
+        form {
+            width: 40%;
+            margin: auto;
+        }
+
+        label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            width: 70%;
+            height: 30px;
+            border: none;
+            border-radius: 20px;
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Form</h1>
+
+    <form>
+        <label>Name</label><input type="text" id="name">
+        <label>Age</label><input type="text" id="age">
+        <label>Gender</label><input type="text" id="gender">
+    </form>
+
+    <script>
+
+           var name= prompt("name");
+           var age = prompt("age");
+           var gender = prompt("gender");
+
+        document.getElementById("name").value = name;
+        document.getElementById("age").value = age;
+        document.getElementById("gender").value = gender;
+        
+
+    </script>
+
+</body>
+</html>

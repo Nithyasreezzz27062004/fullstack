@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Result</title>
+
+    <style>
+        body {
+            display: flex;
+            gap: 60px;
+        }
+
+        #result {
+            border: 2px solid black;
+            width: 350px;
+            height: 450px;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="" id="form">
+
+        <label for="name">Student Name :</label><input type="text" name="name" id="name"><br><br>
+        <label for="studentId">Student ID :</label><input type="text" name="studentId" id="studentId"><br><br>
+        <label for="email">Email :</label><input type="email" name="email" id="email"><br><br>
+        <label for="department">Department :</label><select name="department" id="department">
+            <option>Java Full Stack</option>
+            <option>Python Full Stack</option>
+            <option>MERN Stack</option>
+            <option>Data Analytics</option>
+        </select><br><br>
+        <label for="mark">Mark :</label><input type="number" name="mark" id="mark"><br><br>
+        <button type="button" onclick="studentresult()">Submit</button>
+
+    </form>
+
+
+    <div id="result">
+        Result
+    </div>
+
+    <script>
+
+        function studentresult() {
+
+            let name = document.getElementById("name").value;
+            let studentId = document.getElementById("studentId").value;
+            let email = document.getElementById("email").value;
+            let department = document.getElementById("department").value;
+            let mark = Number(document.getElementById("mark").value);
+            name = name.trim();
+
+            let idResult;
+
+            if (studentId.startsWith("STU") && studentId.length == 6) {
+                idResult = "Valid";
+            }
+            else {
+                idResult = "Invalid";
+            }
+           
+            let emailResult;
+
+            if (email != "" && email.includes("@") && email.includes(".")) {
+                emailResult = "Valid";
+            }
+            else {
+                emailResult = "Invalid";
+            }
+
+            let markResult;
+
+            if (mark >= 0 && mark <= 100) {
+                markResult = "Valid";
+            }
+            else {
+                markResult = "Invalid";
+            }
+
+            let grade;
+
+            if (mark >= 90 && mark <= 100) {
+                grade = "A+";
+            }
+            else if (mark >= 80 && mark < 90) {
+                grade = "A";
+            }
+            else if (mark >= 70 && mark < 80) {
+                grade = "B";
+            }
+            else if (mark >= 60 && mark < 70) {
+                grade = "C";
+            }
+            else if (mark >= 50 && mark < 60) {
+                grade = "D";
+            }
+            else {
+                grade = "F";
+            }
+
+            let result;
+
+            if (mark >= 50) {
+                result = "PASS";
+            }
+            else {
+                result = "FAIL";
+            }
+            let eligibility;
+
+            if (mark >= 60 && emailResult == "Valid" && idResult == "Valid") {
+                eligibility = "Eligible for Next Level";
+            }
+            else {
+                eligibility = "Not Eligible";
+            }
+
+            let performance;
+
+            performance = mark >= 80 ? "Excellent" :
+                mark >= 60 ? "Good" :
+                    "Needs Improvement";
+
+            let recommendation;
+
+            switch (department) {
+
+                case "Java Full Stack":
+                    recommendation = "Advanced Java & Spring Boot";
+                    break;
+
+                case "Python Full Stack":
+                    recommendation = "Django & REST API";
+                    break;
+
+                case "MERN Stack":
+                    recommendation = "React & Node.js";
+                    break;
+
+                case "Data Analytics":
+                    recommendation = "Python & Data Science";
+                    break;
+            }
+
+            document.getElementById("result").innerHTML =
+
+                "Name : " + name + "<br><br>" +
+                "Student ID : " + studentId + "<br><br>" +
+                "Email : " + email + "<br><br>" +
+                "Department : " + department + "<br><br>" +
+                "Mark : " + mark + "<br><br>" +
+                "Grade : " + grade + "<br><br>" +
+                "Result : " + result + "<br><br>" +
+                "Eligibility : " + eligibility + "<br><br>" +
+                "Performance : " + performance + "<br><br>" +
+                "Recommended : " + recommendation;
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        .main {
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            background-image: url("./flower.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 50px auto;
+        }
+
+        h1 {
+            background-color: yellow;
+        }
+
+        .main:hover {
+            transform: scale(3, 2);
+            transition: all 2s linear 0s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main"></div>
+
+</body>
+
+</html>
+
