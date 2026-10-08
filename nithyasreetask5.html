@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fan Animation</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.fancon{
+    width:300px;
+    height:300px;
+}
+
+.fan{
+    width:220px;
+    height:220px;
+    object-fit:contain;
+    display:block;
+}
+
+.rotate{
+    animation:spin 0.5s linear infinite;
+}
+
+@keyframes spin{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+button{
+    padding:10px 20px;
+    margin:10px;
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="fancon">
+
+    <img src="./nithufan.jfif" class="fan" id="fan">
+
+</div>
+
+<div>
+
+    <button onclick="fanOn()">ON</button>
+
+    <button onclick="increaseSpeed()">+</button>
+
+    <button onclick="decreaseSpeed()">-</button>
+
+    <button onclick="fanOff()">OFF</button>
+
+</div>
+
+<script>
+
+const fan = document.getElementById("fan");
+
+let speed = 0.5;
+
+function fanOn()
+{
+    fan.classList.add("rotate");
+}
+
+function fanOff()
+{
+    fan.classList.remove("rotate");
+}
+
+function increaseSpeed()
+{
+    speed = speed - 0.1;
+
+    if(speed < 0.1)
+    {
+        speed = 0.1;
+    }
+
+    fan.style.animationDuration = speed + "s";
+}
+
+function decreaseSpeed()
+{
+    speed = speed + 0.1;
+
+    fan.style.animationDuration = speed + "s";
+}
+
+</script>
+
+</body>
+</html>

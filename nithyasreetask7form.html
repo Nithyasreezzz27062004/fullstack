@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form</title>
+
+<style>
+    form {
+        background-color: blueviolet;
+        width: 300px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid black;
+    }
+
+    input {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    button {
+        padding: 5px 15px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<form>
+
+    Name:
+    <input type="text" id="name"><br>
+
+    Age:
+    <input type="number" id="age"><br>
+
+    Email:
+    <input type="email" id="email"><br>
+
+    <button type="button" onclick="Data()">Submit</button>
+
+</form>
+
+<script>
+
+function Sample(name, age, email)
+{
+    console.log(name);
+    console.log(age);
+    console.log(email);
+}
+
+function Data()
+{
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let email = document.getElementById("email").value;
+
+    Sample(name, age, email);
+}
+
+</script>
+
+</body>
+</html>
