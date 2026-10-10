@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+
+        body {
+            background: #edf3ff;
+            padding: 20px 0;
+        }
+
+        .form-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: auto;
+            border: 5px solid black;
+            border-radius: 18px;
+            background: white;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #0646a6;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            border-radius: 7px;
+            padding: 12px;
+            min-width: 0;
+        }
+
+        .personal {
+            grid-column: 1 / -1;
+        }
+
+        h3 {
+            padding: 10px;
+            margin: -12px -12px 12px;
+            font-size: 14px;
+        }
+
+        .personal h3 { background: #91bffb; }
+        .contact h3 { background: #80f6a4; }
+        .course h3 { background: #f4da79; }
+        .education h3 { background: #fea8ad; }
+        .skills h3 { background: #ac86f8; }
+        .additional h3 { background: #6ce1fc; }
+        .terms h3 { background: #74f49a; }
+
+        .fields {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .contact .fields {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .education .fields {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .field {
+            min-width: 0;
+        }
+
+        input:not([type="radio"]):not([type="checkbox"]):not([type="file"]),
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            accent-color: #0865ee;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            font-size: 11px;
+        }
+
+        input[type="file"]::file-selector-button {
+            background:#777;
+            color: white;
+            border: none;
+            padding: 7px;
+            border-radius: 4px;
+        }
+
+        textarea {
+            height: 65px;
+        }
+
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .hint {
+            font-size: 10px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .terms-content {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+        }
+
+        .terms-content input {
+            margin-top: 3px;
+        }
+
+        .terms-content label {
+            font-weight: normal;
+            line-height: 1.5;
+        }
+
+        .terms-content a {
+            color: #0646a6;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px;
+            background: #a9d2ff;
+        }
+
+        button {
+            padding: 13px 22px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .submit {
+            background: #0865ee;
+            
+        }
+
+        .reset {
+            background: #555;
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .personal {
+                grid-column: auto;
+            }
+
+            .personal .fields,
+            .contact .fields,
+            .education .fields {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 767px) {
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .personal {
+                grid-column: auto;
+            }
+
+            .fields,
+            .contact .fields,
+            .education .fields {
+                grid-template-columns: 1fr;
+            }
+
+            .form-buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+
+    <div class="header">
+        <h1>🎓 Student Registration Form</h1>
+        <p>Fill in the details below to complete your registration</p>
+    </div>
+
+    <form>
+
+        <div class="form-grid">
+
+            <div class="section personal">
+                <h3>👤 1. Personal Details</h3>
+
+                <div class="fields">
+                    <div>
+                        <label>Full Name <span style="color:red">*</span></label>
+                        <input type="text" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div>
+                        <label>Date of Birth <span style="color:red">*</span></label>
+                        <input type="date" required>
+                    </div>
+
+                    <div>
+                        <label>Gender <span style="color:red">*</span></label>
+                        <div class="options">
+                            <label><input type="radio" name="gender" required> Male</label>
+                            <label><input type="radio" name="gender"> Female</label>
+                            <label><input type="radio" name="gender"> Other</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Father's Name <span style="color:red">*</span></label>
+                        <input type="text" placeholder="Enter father's name" required>
+                    </div>
+
+                    <div>
+                        <label>Mother's Name <span style="color:red">*</span></label>
+                        <input type="text" placeholder="Enter mother's name" required>
+                    </div>
+
+                    <div>
+                        <label>Blood Group</label>
+                        <select>
+                            <option>-- Select Blood Group --</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section contact">
+                <h3>📞 2. Contact Details</h3>
+
+                <div class="fields">
+                    <div>
+                        <label>Email ID *</label>
+                        <input type="email" placeholder="example@mail.com" required>
+                    </div>
+
+                    <div>
+                        <label>Mobile Number *</label>
+                        <input type="tel" placeholder="9876543210"
+                               pattern="[0-9]{10}" required>
+                    </div>
+
+                    <div class="full">
+                        <label>Address *</label>
+                        <textarea placeholder="Enter your full address" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section course">
+                <h3>🎓 3. Course Details</h3>
+
+                <div>
+                    <label>Select Course *</label>
+                    <select required>
+                        <option value="">-- Select Course --</option>
+                        <option>Full Stack Development</option>
+                        <option>Web Development</option>
+                        <option>Python Programming</option>
+                        <option>Java Programming</option>
+                        <option>Data Science</option>
+                    </select>
+                </div>
+
+                <br>
+
+                <label>Preferred Batch *</label>
+                <div class="options">
+                    <label><input type="radio" name="batch" required> Morning</label>
+                    <label><input type="radio" name="batch"> Afternoon</label>
+                    <label><input type="radio" name="batch"> Evening</label>
+                </div>
+
+                <br>
+
+                <label>Mode of Learning</label>
+                <div class="options">
+                    <label><input type="checkbox"> Online</label>
+                    <label><input type="checkbox"> Offline</label>
+                    <label><input type="checkbox"> Hybrid</label>
+                </div>
+            </div>
+
+            <div class="section education">
+                <h3>📖 4. Educational Details</h3>
+
+                <div class="fields">
+                    <div>
+                        <label>Highest Qualification *</label>
+                        <select required>
+                            <option value="">-- Select --</option>
+                            <option>10th</option>
+                            <option>12th</option>
+                            <option>UG</option>
+                            <option>PG</option>
+                            <option>Diploma</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Year of Passing *</label>
+                        <input type="number" placeholder="e.g. 2026" required>
+                    </div>
+
+                    <div>
+                        <label>Percentage / CGPA *</label>
+                        <input type="text" placeholder="e.g. 8.95" required>
+                    </div>
+
+                    <div>
+                        <label>School / College Name *</label>
+                        <input type="text" placeholder="Enter institution name" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section skills">
+                <h3>⚙️ 5. Skills & Interests</h3>
+
+                <label>Technical Skills (Select all that apply)</label>
+
+                <div class="options">
+                    <label><input type="checkbox"> C</label>
+                    <label><input type="checkbox"> C++</label>
+                    <label><input type="checkbox"> Java</label>
+                    <label><input type="checkbox"> Python</label>
+                    <label><input type="checkbox"> Web Development</label>
+                    <label><input type="checkbox"> Data Science</label>
+                    <label><input type="checkbox"> IoT</label>
+                    <label><input type="checkbox"> Others</label>
+                </div>
+            </div>
+
+            <div class="section additional">
+                <h3>📎 6. Additional Information</h3>
+
+                <div class="fields">
+                    <div>
+                        <label>Upload Photo *</label>
+                        <input type="file" accept="image/*" required>
+                        <p class="hint">(JPG, PNG - Max 2MB)</p>
+                    </div>
+
+                    <div>
+                        <label>Upload Resume</label>
+                        <input type="file" accept=".pdf">
+                        <p class="hint">(PDF - Max 2MB)</p>
+                    </div>
+
+                    <div>
+                        <label>Any Message</label>
+                        <textarea placeholder="Enter your message here"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section terms">
+                <h3>📄 7. Terms & Conditions</h3>
+
+                <div class="terms-content">
+                    <input type="checkbox" id="agree" checked required>
+
+                    <label for="agree">
+                        I agree to the terms and conditions and confirm that all the information provided is correct.
+                        <br><br>
+                        <a href="#agree">Read Terms & Conditions</a>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-buttons">
+            <button type="submit" class="submit">➤ Submit Form</button>
+            <button type="reset" class="reset">↻ Reset Form</button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
