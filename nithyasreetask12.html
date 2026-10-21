@@ -272,7 +272,8 @@ const employees = [
     console.log(original[0].id == employees[0].id);
 
 
-    let bonuseligible = employees.filter((val) => val.active == true && val.performance >= 80).sort((a, b) => b.salary - a.salary)
+    let bonuseligible = employees.filter((val) => val.active == true && val.performance >= 80)
+    .sort((a, b) => b.salary - a.salary)
     .map((val) => {
         let percentage = val.performance >= 95 ? 15 : 10;
 
@@ -283,8 +284,6 @@ const employees = [
             finalSalary: val.salary + val.salary * percentage / 100
         };
     });
-    console.log(bonuseligible);
-
 
     let report = {
     totalEmployees: employees.length,
@@ -295,19 +294,38 @@ const employees = [
 
     totalSalary: employees.reduce((acc, val) => acc + val.salary, 0),
 
+    totalAnnualSalaryActive: employees
+        .filter((val) => val.active == true)
+        .reduce((acc, val) => acc + val.salary * 12, 0),
+
     averageSalary: employees.reduce((acc, val) => acc + val.salary, 0) / employees.length,
 
-    highestSalary: [...employees].sort((a, b) => b.salary - a.salary)[0],
+    highestSalary: [...employees].sort((a, b) => b.salary - a.salary)[0].name,
 
-    lowestSalary: [...employees].sort((a, b) => a.salary - b.salary)[0],
+    lowestSalary: [...employees].sort((a, b) => a.salary - b.salary)[0].name,
 
-    topPerformers: [...employees].sort((a, b) => b.performance - a.performance).slice(0, 3),
+    topPerformers: [...employees]
+        .sort((a, b) => b.performance - a.performance)
+        .slice(0, 3)
+        .map((val) => val.name),
 
-    improvementEmployees: employees.filter((val) => val.performance < 60)
+    departmentWisePayroll: employees.reduce((acc, val) => {
+        acc[val.department] = (acc[val.department] || 0) + val.salary;
+        return acc;
+    }, {}),
+
+    totalBonusExpenditure: bonuseligible.reduce((acc, val) => acc + val.bonus, 0),
+
+    improvementEmployees: employees
+        .filter((val) => val.performance < 60)
+        .map((val) => val.name),
+
+    uniqueSkillsCount: [...new Set(employees.flatMap((val) => val.skills))].length,
+
+    finalBonusEligibilityReport: bonuseligible
 };
 
 console.log(report);
-
  </script>
 </body>
 </html>
