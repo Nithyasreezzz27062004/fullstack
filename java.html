@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+   let tasks = [
+    { id: 1, title: "Build Login", done: false },
+    { id: 2, title: "Test Payment", done: false },
+    { id: 3, title: "Fix Navbar", done: true }
+];
+
+const board = document.getElementById("board");
+
+function render() {
+    board.innerHTML = tasks.map(t => `
+        <div>
+            <span>${t.title} - ${t.done ? "Done" : "Pending"}</span>
+            <button data-action="toggle" data-id="${t.id}">Toggle</button>
+            <button data-action="delete" data-id="${t.id}">Delete</button>
+        </div>
+    `).join("");
+}
+
+board.addEventListener("click", function (event) {
+    const button = event.target.closest("button");
+    if (!button || !board.contains(button)) return;
+
+    const id = Number(button.dataset.id);
+
+    if (button.dataset.action === "toggle") {
+        const task = tasks.find(t => t.id === id);
+        if (task) task.done = !task.done;
+    }
+
+    if (button.dataset.action === "delete") {
+        tasks = tasks.filter(t => t.id !== id);
+    }
+
+    render();
+}
+
+);
+
+render();
+
+
+
+    </script>
+</body>
+</html>
