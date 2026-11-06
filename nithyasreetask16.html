@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermarket Billing System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+            color: #176b45;
+        }
+
+        .form {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        input {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+            background: #198754;
+        }
+
+        .remove {
+            background: #dc3545;
+        }
+
+        .print {
+            background: #1769aa;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #176b45;
+            color: white;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+            color: #176b45;
+        }
+
+        .actions {
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1> Supermarket Billing</h1>
+
+    <p><b>Bill No:</b> <span id="billNo"></span></p>
+    <p><b>Date:</b> <span id="billDate"></span></p>
+
+    <div class="form">
+        <input type="text" id="product" placeholder="Product Name">
+        <input type="number" id="price" placeholder="Price ₹" min="0.01" step="0.01">
+        <input type="number" id="quantity" placeholder="Quantity" min="1" step="1">
+        <button onclick="addItem()">Add Item</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Product</th>
+                <th>Price (₹)</th>
+                <th>Quantity</th>
+                <th>Amount (₹)</th>
+                <th class="remove">Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="billItems"></tbody>
+    </table>
+
+    <div class="total">
+        <h3>Subtotal: ₹<span id="subtotal">0.00</span></h3>
+        <h3>GST (5%): ₹<span id="gst">0.00</span></h3>
+        <h2>Grand Total: ₹<span id="grandTotal">0.00</span></h2>
+    </div>
+
+    <div class="actions">
+        <button class="remove" onclick="clearBill()">Clear Bill</button>
+        <button class="print" onclick="printBill()">Print Bill</button>
+    </div>
+
+    <h3 style="text-align:center">Thank You! Visit Again 😊</h3>
+</div>
+
+<script>
+    let items = [];
+
+    document.getElementById("billNo").textContent =
+        "BILL" + Date.now().toString().slice(-6);
+
+    document.getElementById("billDate").textContent =
+        new Date().toLocaleDateString("en-IN");
+
+    function addItem() {
+        let name = document.getElementById("product").value.trim();
+        let price = Number(document.getElementById("price").value);
+        let quantity = Number(document.getElementById("quantity").value);
+
+        if (name === "" || price <= 0 || quantity <= 0 ||
+            !Number.isFinite(price) || !Number.isInteger(quantity)) {
+            alert("Please enter valid product details!");
+            return;
+        }
+
+        items.push({
+            name: name,
+            price: price,
+            quantity: quantity
+        });
+
+        displayBill();
+
+        document.getElementById("product").value = "";
+        document.getElementById("price").value = "";
+        document.getElementById("quantity").value = "";
+    }
+
+    function displayBill() {
+        let table = document.getElementById("billItems");
+        let subtotal = 0;
+
+        table.innerHTML = "";
+
+        items.forEach(function(item, index) {
+            let amount = item.price * item.quantity;
+            subtotal += amount;
+
+            table.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${item.name.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;")}</td>
+                    <td>${item.price.toFixed(2)}</td>
+                    <td>${item.quantity}</td>
+                    <td>${amount.toFixed(2)}</td>
+                    <td>
+                        <button class="remove"
+                        onclick="removeItem(${index})">Remove</button>
+                    </td>
+                </tr>
+            `;
+        });
+
+        let gst = subtotal * 0.05;
+        let grandTotal = subtotal + gst;
+
+        document.getElementById("subtotal").textContent =
+            subtotal.toFixed(2);
+
+        document.getElementById("gst").textContent =
+            gst.toFixed(2);
+
+        document.getElementById("grandTotal").textContent =
+            grandTotal.toFixed(2);
+    }
+
+    function removeItem(index) {
+        items.splice(index, 1);
+        displayBill();
+    }
+
+    function clearBill() {
+        if (items.length === 0) {
+            alert("Bill is already empty!");
+            return;
+        }
+
+        if (confirm("Do you want to clear the bill?")) {
+            items = [];
+            displayBill();
+        }
+    }
+
+    function printBill() {
+        if (items.length === 0) {
+            alert("Please add products before printing!");
+            return;
+        }
+
+        window.print();
+    }
+</script>
+
+</body>
+</html>
